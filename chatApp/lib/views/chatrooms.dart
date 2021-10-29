@@ -19,7 +19,7 @@ class ChatRoom extends StatefulWidget {
 class _ChatRoomState extends State<ChatRoom> {
   Stream chatRooms;
 
-
+//Wrapped the list view builder with Stream Builder
   Widget chatRoomsList() {
     return StreamBuilder(
       stream: chatRooms,
