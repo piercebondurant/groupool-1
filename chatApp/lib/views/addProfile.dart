@@ -120,24 +120,22 @@ class _AddProfileState extends State<AddProfile>{
               SizedBox(
                 height: 56,
               ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    addProfile();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        gradient: LinearGradient(
-                          colors: [const Color(0xff3e2723), const Color(0xff4e342e)],
-                        )),
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "Submit",
-                      style: biggerTextStyle(),
-                      textAlign: TextAlign.center,
-                    ),
+              GestureDetector(
+                onTap: (){
+                  addProfile();
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      gradient: LinearGradient(
+                        colors: [const Color(0xff3e2723), const Color(0xff4e342e)],
+                      )),
+                  width: MediaQuery.of(context).size.width,
+                  child: Text(
+                    "Submit",
+                    style: biggerTextStyle(),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
