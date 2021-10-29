@@ -1,0 +1,27 @@
+helper
+    Authenticate
+    Constants
+    HelperFunctions
+    CustomTheme
+
+models
+    User
+
+services
+    AuthService
+    DatabaseMethods
+
+views
+    AddPeople
+    AddProfile
+    Chat
+    ChatRoom
+    ForgotPassword
+    People
+    ProjectRooms
+    Search
+    Search2 
+    ShowProfile
+    SignIn
+    SignUp
+    Team
