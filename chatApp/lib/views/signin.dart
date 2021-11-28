@@ -37,7 +37,7 @@ class _SignInState extends State<SignIn> {
           .signInWithEmailAndPassword(
               emailEditingController.text, passwordEditingController.text)
           .then((result) async {
-        if (result != null)  {
+        if (result != null) {
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(emailEditingController.text);
 
@@ -79,6 +79,7 @@ class _SignInState extends State<SignIn> {
                     child: Column(
                       children: [
                         TextFormField(
+                          key: new Key('emailKey'),
                           validator: (val) {
                             return RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -91,6 +92,7 @@ class _SignInState extends State<SignIn> {
                           decoration: textFieldInputDecoration("email"),
                         ),
                         TextFormField(
+                          key: new Key('passwordKey'),
                           obscureText: true,
                           validator: (val) {
                             return val.length > 6
@@ -111,6 +113,7 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
+                        key: new Key('tapKey'),
                         onTap: () {
                           Navigator.push(
                               context,
