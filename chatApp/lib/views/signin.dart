@@ -113,7 +113,7 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        key: new Key('tapKey'),
+                        key: new Key('forgotPasswordKey'),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -134,6 +134,7 @@ class _SignInState extends State<SignIn> {
                     height: 16,
                   ),
                   GestureDetector(
+                    key: new Key('signinKey'),
                     onTap: () {
                       signIn();
                     },
@@ -182,6 +183,7 @@ class _SignInState extends State<SignIn> {
                         style: simpleTextStyle(),
                       ),
                       GestureDetector(
+                        key: new Key('signupKey'),
                         onTap: () {
                           widget.toggleView();
                         },

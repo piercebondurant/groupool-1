@@ -3,50 +3,50 @@ import 'package:chatapp/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/services/database.dart';
 
-class AddProfile extends StatefulWidget{
+class AddProfile extends StatefulWidget {
   @override
   _AddProfileState createState() => _AddProfileState();
-
 }
 
-class _AddProfileState extends State<AddProfile>{
-
+class _AddProfileState extends State<AddProfile> {
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController nameEditingController = new TextEditingController();
   TextEditingController sourceEditingController = new TextEditingController();
-  TextEditingController destinationEditingController = new TextEditingController();
-  TextEditingController sourceTimeEditingController = new TextEditingController();
-  TextEditingController destinationTimeEditingController = new TextEditingController();
+  TextEditingController destinationEditingController =
+      new TextEditingController();
+  TextEditingController sourceTimeEditingController =
+      new TextEditingController();
+  TextEditingController destinationTimeEditingController =
+      new TextEditingController();
 
   DatabaseMethods databaseMethods = new DatabaseMethods();
 
   bool isLoading = false;
 
-  addProfile() async{
+  addProfile() async {
     setState(() {
-
       isLoading = true;
     });
 
-    Map<String,String> ProfileDataMap = {
-      "email" : emailEditingController.text,
-      "fullName" : nameEditingController.text,
-      "source" : sourceEditingController.text,
-      "destination" : destinationEditingController.text,
-      "sourceTime" : sourceTimeEditingController.text,
-      "destinationTime" : destinationTimeEditingController.text,
+    Map<String, String> ProfileDataMap = {
+      "email": emailEditingController.text,
+      "fullName": nameEditingController.text,
+      "source": sourceEditingController.text,
+      "destination": destinationEditingController.text,
+      "sourceTime": sourceTimeEditingController.text,
+      "destinationTime": destinationTimeEditingController.text,
     };
 
     databaseMethods.addProfileInfo(emailEditingController.text, ProfileDataMap);
 
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatRoom()));
-
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => ChatRoom()));
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title:Center(child: Text('Enter Details'))),
+        appBar: AppBar(title: Center(child: Text('Enter Details'))),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -55,10 +55,13 @@ class _AddProfileState extends State<AddProfile>{
                 height: 26,
               ),
               TextFormField(
+                key: new Key('emailKey'),
                 style: simpleTextStyle(),
                 controller: emailEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
                 decoration: textFieldInputDecoration("Confirm Email"),
               ),
@@ -66,10 +69,13 @@ class _AddProfileState extends State<AddProfile>{
                 height: 26,
               ),
               TextFormField(
+                key: new Key('nameKey'),
                 style: simpleTextStyle(),
                 controller: nameEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
                 decoration: textFieldInputDecoration("Full Name"),
               ),
@@ -77,10 +83,13 @@ class _AddProfileState extends State<AddProfile>{
                 height: 16,
               ),
               TextFormField(
+                key: new Key('sourceKey'),
                 style: simpleTextStyle(),
                 controller: sourceEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
                 decoration: textFieldInputDecoration("Source Location"),
               ),
@@ -88,10 +97,13 @@ class _AddProfileState extends State<AddProfile>{
                 height: 16,
               ),
               TextFormField(
+                key: new Key('destinationKey'),
                 style: simpleTextStyle(),
                 controller: destinationEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
                 decoration: textFieldInputDecoration("Destination Location"),
               ),
@@ -99,29 +111,38 @@ class _AddProfileState extends State<AddProfile>{
                 height: 16,
               ),
               TextFormField(
+                key: new Key('inTimeKey'),
                 style: simpleTextStyle(),
                 controller: sourceTimeEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
-                decoration: textFieldInputDecoration("Time at which you leave for work"),
+                decoration: textFieldInputDecoration(
+                    "Time at which you leave for work"),
               ),
               SizedBox(
                 height: 16,
               ),
               TextFormField(
+                key: new Key('outTimeKey'),
                 style: simpleTextStyle(),
                 controller: destinationTimeEditingController,
-                validator: (val){
-                  return val.isEmpty || val.length < 3 ? "Enter Name 3+ characters" : null;
+                validator: (val) {
+                  return val.isEmpty || val.length < 3
+                      ? "Enter Name 3+ characters"
+                      : null;
                 },
-                decoration: textFieldInputDecoration("Time at which you leave for home"),
+                decoration: textFieldInputDecoration(
+                    "Time at which you leave for home"),
               ),
               SizedBox(
                 height: 56,
               ),
               GestureDetector(
-                onTap: (){
+                key: new Key('submitKey'),
+                onTap: () {
                   addProfile();
                 },
                 child: Container(
@@ -129,7 +150,10 @@ class _AddProfileState extends State<AddProfile>{
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       gradient: LinearGradient(
-                        colors: [const Color(0xff3e2723), const Color(0xff4e342e)],
+                        colors: [
+                          const Color(0xff3e2723),
+                          const Color(0xff4e342e)
+                        ],
                       )),
                   width: MediaQuery.of(context).size.width,
                   child: Text(
@@ -141,7 +165,6 @@ class _AddProfileState extends State<AddProfile>{
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }
