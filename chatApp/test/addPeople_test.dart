@@ -14,9 +14,10 @@ void main() {
     await tester.pumpWidget(createWidgetForTesting(
         child: new AddPeople(projectId: "abc", people: ['a', 'b', 'c'])));
 
-    final projectIdFinder = find.text("abc");
-    final peopleFinder = find.text("['a', 'b', 'c']");
-
     expect(find.text("Add People"), findsOneWidget);
+
+    await tester.tap(find.byKey(new Key('addUser')));
+
+    await tester.pumpAndSettle();
   });
 }

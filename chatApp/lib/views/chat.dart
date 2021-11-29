@@ -45,7 +45,7 @@ class _ChatState extends State<Chat> {
   addMessage() {
     if (messageEditingController.text.isNotEmpty) {
       setState(() {
-        time=DateFormat.jm().format(DateTime.now());
+        time = DateFormat.jm().format(DateTime.now());
       });
       Map<String, dynamic> chatMessageMap = {
         "sendBy": Constants.myName,
@@ -80,7 +80,10 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('me and u',style: TextStyle(color: Colors.white),) ,
+        title: Text(
+          'me and u',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         child: Stack(
@@ -96,6 +99,7 @@ class _ChatState extends State<Chat> {
                   children: [
                     Expanded(
                         child: TextField(
+                      key: new Key('inputMessageKey'),
                       focusNode: nod,
                       controller: messageEditingController,
                       style: simpleTextStyle(),
@@ -111,6 +115,7 @@ class _ChatState extends State<Chat> {
                       width: 16,
                     ),
                     GestureDetector(
+                      key: new Key('addMessageKey'),
                       onTap: () {
                         addMessage();
                       },
@@ -151,7 +156,10 @@ class MessageTile extends StatelessWidget {
   final String time;
 
   MessageTile(
-      {@required this.message, @required this.sendByMe, @required this.name, @required this.time});
+      {@required this.message,
+      @required this.sendByMe,
+      @required this.name,
+      @required this.time});
 
   @override
   Widget build(BuildContext context) {

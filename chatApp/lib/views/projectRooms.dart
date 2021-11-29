@@ -9,8 +9,6 @@ import 'package:chatapp/helper/theme.dart';
 import 'package:chatapp/views/search2.dart';
 
 class ProjectRooms extends StatefulWidget {
-
-
   @override
   _ProjectRoomsState createState() => _ProjectRoomsState();
 }
@@ -18,26 +16,25 @@ class ProjectRooms extends StatefulWidget {
 class _ProjectRoomsState extends State<ProjectRooms> {
   Stream projectRooms;
 
-  Widget projectRoomList(){
+  Widget projectRoomList() {
     return StreamBuilder(
-      stream: projectRooms,
-      builder: (context, snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-            reverse: true,
-            itemCount: snapshot.data.documents.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return ProjectTile(
-
-                projectId: snapshot.data.documents[index].data["projectId"],
-              );
-            })
-            : Container();
-      }
-    );
-
+        stream: projectRooms,
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  reverse: true,
+                  itemCount: snapshot.data.documents.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return ProjectTile(
+                      projectId:
+                          snapshot.data.documents[index].data["projectId"],
+                    );
+                  })
+              : Container();
+        });
   }
+
   @override
   void initState() {
     getUserInfogetChats();
@@ -59,28 +56,28 @@ class _ProjectRoomsState extends State<ProjectRooms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text("Chat Rooms"),
-            elevation: 0.0,
-            centerTitle: false,
-            actions: [
-          GestureDetector(
-            onTap: () {
-              AuthService().signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Authenticate()));
-            },
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Icon(Icons.exit_to_app)),
-          ),
-        ]),
-            body: Container(
-              child: projectRoomList(),
-
-    ),
+      appBar: AppBar(
+          title: Text("Chat Rooms"),
+          elevation: 0.0,
+          centerTitle: false,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                AuthService().signOut();
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Authenticate()));
+              },
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Icon(Icons.exit_to_app)),
+            ),
+          ]),
+      body: Container(
+        child: projectRoomList(),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
+        key: new Key('search2Key'),
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Search2()));
@@ -119,8 +116,7 @@ class _ProjectTileState extends State<ProjectTile> {
               height: 30,
               width: 30,
               decoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(30)),
+                  color: Colors.brown, borderRadius: BorderRadius.circular(30)),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(2.0, 2.0, 4.0, 3.0),
                 child: Text(widget.projectId.substring(8, 10),

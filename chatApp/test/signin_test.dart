@@ -28,21 +28,28 @@ class SigninTestingState extends State<SigninTesting> {
           .pumpWidget(createWidgetForTesting(child: new SignIn(toggleView)));
 
       await tester.enterText(find.byKey(new Key('emailKey')), 'emailFieldTest');
+
       expect(find.text('emailFieldTest'), findsOneWidget);
 
       await tester.enterText(
           find.byKey(new Key('passwordKey')), 'passwordFieldTest');
+
       expect(find.text('passwordFieldTest'), findsOneWidget);
 
-      // await tester.tap(find.byKey(new Key('tapKey')));
+      await tester.tap(find.byKey(new Key('forgotPasswordKey')));
 
-      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(new Key('signinKey')));
+
+      await tester.tap(find.byKey(new Key('signupKey')));
 
       expect(find.text('GrouPool'), findsOneWidget);
+
       expect(find.text('Sign In'), findsOneWidget);
+
       expect(find.text('Forgot Password?'), findsOneWidget);
+
       expect(find.text('Sign In with Google'), findsOneWidget);
-      // expect(find.text('Don\'t have account?'), findsOneWidget);
+
       expect(find.text('Register now'), findsOneWidget);
     });
   }

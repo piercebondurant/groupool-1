@@ -26,7 +26,7 @@ class _ChatRoomState extends State<ChatRoom> {
       builder: (context, snapshot) {
         return snapshot.hasData
             ? ListView.builder(
-          reverse: true,
+                reverse: true,
                 itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -35,7 +35,8 @@ class _ChatRoomState extends State<ChatRoom> {
                         .toString()
                         .replaceAll("_", "")
                         .replaceAll(Constants.myName, ""),
-                    chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
+                    chatRoomId:
+                        snapshot.data.documents[index].data["chatRoomId"],
                   );
                 })
             : Container();
@@ -70,7 +71,8 @@ class _ChatRoomState extends State<ChatRoom> {
         centerTitle: false,
         actions: [
           GestureDetector(
-            onTap: (){
+            key: new Key('showProfileKey'),
+            onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ShowProfile()));
             },
@@ -79,9 +81,9 @@ class _ChatRoomState extends State<ChatRoom> {
               child: Icon(Icons.perm_identity),
             ),
           ),
-
           GestureDetector(
-            onTap: (){
+            key: new Key('projectRoomsKey'),
+            onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProjectRooms()));
             },
@@ -91,6 +93,7 @@ class _ChatRoomState extends State<ChatRoom> {
             ),
           ),
           GestureDetector(
+            key: new Key('authenticateKey'),
             onTap: () {
               AuthService().signOut();
               Navigator.pushReplacement(context,
@@ -107,6 +110,7 @@ class _ChatRoomState extends State<ChatRoom> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.search),
+        key: new Key('searchKey'),
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Search()));
@@ -120,30 +124,29 @@ class ChatRoomsTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
 
-  ChatRoomsTile({this.userName,@required this.chatRoomId});
+  ChatRoomsTile({this.userName, @required this.chatRoomId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Chat(
-            chatRoomId: chatRoomId,
-          )
-        ));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Chat(
+                      chatRoomId: chatRoomId,
+                    )));
       },
       child: Container(
         color: Colors.black26,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Row(
           children: [
-
             Container(
               height: 30,
               width: 30,
               decoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(30)),
+                  color: Colors.brown, borderRadius: BorderRadius.circular(30)),
               child: Text(userName.substring(0, 1),
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -162,11 +165,9 @@ class ChatRoomsTile extends StatelessWidget {
                     fontSize: 16,
                     fontFamily: 'OverpassRegular',
                     fontWeight: FontWeight.w300)),
-
           ],
         ),
       ),
     );
   }
 }
-
