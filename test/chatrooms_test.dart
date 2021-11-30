@@ -1,0 +1,26 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:chatapp/views/chatrooms.dart';
+
+void main() {
+  Widget createWidgetForTesting({Widget child}) {
+    return MaterialApp(
+      home: child,
+    );
+  }
+
+  testWidgets('chat room test', (WidgetTester tester) async {
+    await tester.pumpWidget(createWidgetForTesting(child: new ChatRoom()));
+
+    expect(find.text('Chats'), findsOneWidget);
+
+    await tester.tap(find.byKey(new Key('showProfileKey')));
+
+    await tester.tap(find.byKey(new Key('projectRoomsKey')));
+
+    await tester.tap(find.byKey(new Key('authenticateKey')));
+
+    await tester.tap(find.byKey(new Key('searchKey')));
+  });
+}
