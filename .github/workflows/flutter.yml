@@ -30,7 +30,7 @@ jobs:
       run: |
         git init
         git config --global user.email "kkapoor3@uh.edu"
-        git config --global user.name "Kartik Kapoor"
+        git config --global user.name "kkapoor3"
         git add Readme.md 
         git show-ref
         git commit -m "Re-build Readme.md" || echo "No changes to commit"
