@@ -95,7 +95,7 @@ class _SignInState extends State<SignIn> {
                           key: new Key('passwordKey'),
                           obscureText: true,
                           validator: (val) {
-                            return val.length > 6
+                            return val.length >= 6
                                 ? null
                                 : "Enter Password 6+ characters";
                           },

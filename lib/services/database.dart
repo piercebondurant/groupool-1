@@ -122,5 +122,11 @@ class DatabaseMethods {
         .where('users', arrayContains: itIsMyName)
         .snapshots();
   }
-
+  smartSuggestion(String source) {
+    //var match = Firestore.instance.collection("users").where('source',);
+    return Firestore.instance
+        .collection("users")
+        .where('source', isEqualTo: source)
+        .getDocuments();
+  }
 }
